@@ -16,5 +16,5 @@
     "url": "https://github.com/ishi720/gulp-package-version-notation/issues"
   },
   "homepage": "https://github.com/ishi720/gulp-package-version-notation#readme",
-  "keywords": ["gulp-package-version-notation","gulp"]
+  "keywords": ["gulp-package-version-notation","gulp","gulpplugin"]
 }

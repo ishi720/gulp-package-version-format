@@ -1,5 +1,5 @@
 {
-  "name": "gulp-package-version-notation",
+  "name": "gulp-package-version-format",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

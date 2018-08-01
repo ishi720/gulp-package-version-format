@@ -22,24 +22,24 @@ module.exports = function() {
 
     /* メイン処理 */
     var dataJson = JSON.parse(file.contents.toString('utf8'));
+    var depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
 
-    
-    for(var key in dataJson.devDependencies){
-
-      var str = dataJson.devDependencies[key]; 
-
-      //バージョン情報を書き換える
-      if ( dataJson.devDependencies[key].match(/\^0\.0\.\d+$/) ){
-        //^0.0.5 -> 0.0.5
-        dataJson.devDependencies[key] = str.replace(/\^0\.0\.(\d+)$/, "0.0."+'$1' );
-      } else if ( dataJson.devDependencies[key].match(/\^0\.\d+\.\d+$/) ) {
-        //^0.5.5 -> 0.5.x
-        dataJson.devDependencies[key] = str.replace(/\^0\.(\d+).(\d+)$/, "0."+'$1'+".x" );
-      } else if ( dataJson.devDependencies[key].match(/\^\d\.\d+\.\d+$/) ) { 
-        //^5.5.5 -> 5.x.x
-        dataJson.devDependencies[key] = str.replace(/\^(\d+)\.(\d+).(\d+)$/, '$1'+".x.x" );
+    depNames.forEach( function(depName) {
+      for(var pacName in dataJson[depName]){
+        var str = dataJson[depName][pacName]; 
+        //バージョン情報を書き換える
+        if ( dataJson[depName][pacName].match(/\^0\.0\.\d+$/) ){
+          //^0.0.5 -> 0.0.5
+          dataJson[depName][pacName] = str.replace(/\^0\.0\.(\d+)$/, "0.0."+'$1' );
+        } else if ( dataJson[depName][pacName].match(/\^0\.\d+\.\d+$/) ) {
+          //^0.5.5 -> 0.5.x
+          dataJson[depName][pacName] = str.replace(/\^0\.(\d+).(\d+)$/, "0."+'$1'+".x" );
+        } else if ( dataJson[depName][pacName].match(/\^\d\.\d+\.\d+$/) ) { 
+          //^5.5.5 -> 5.x.x
+          dataJson[depName][pacName] = str.replace(/\^(\d+)\.(\d+).(\d+)$/, '$1'+".x.x" );
+        }
       }
-    }
+    });
 
     //json整形
     file.contents = new Buffer( JSON.stringify( dataJson, null, "  " ));

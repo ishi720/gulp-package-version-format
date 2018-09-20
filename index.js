@@ -34,7 +34,7 @@ module.exports = function() {
         } else if ( dataJson[depName][pacName].match(/\^0\.\d+\.\d+$/) ) {
           //^0.5.5 -> 0.5.x
           dataJson[depName][pacName] = str.replace(/\^0\.(\d+).(\d+)$/, "0."+'$1'+".x" );
-        } else if ( dataJson[depName][pacName].match(/\^\d\.\d+\.\d+$/) ) { 
+        } else if ( dataJson[depName][pacName].match(/\^\d+\.\d+\.\d+$/) ) { 
           //^5.5.5 -> 5.x.x
           dataJson[depName][pacName] = str.replace(/\^(\d+)\.(\d+).(\d+)$/, '$1'+".x.x" );
         }

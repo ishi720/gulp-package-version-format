@@ -20,6 +20,11 @@ package.jsonのバージョン表記を単純化するgulpのプラグインで�
 npm i gulp-package-version-format
 ```
 
+```
+yarn add gulp-package-version-format
+```
+
+
 ## 使い方
 
 gulpfile.jsに以下のような記述をする。

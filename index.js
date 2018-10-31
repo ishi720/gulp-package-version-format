@@ -42,7 +42,7 @@ module.exports = function() {
     });
 
     //json整形
-    file.contents = new Buffer( JSON.stringify( dataJson, null, "  " ));
+    file.contents = new Buffer( JSON.stringify( dataJson, null, 2 ) + '\n' );
 
     this.push(file);
     callback();

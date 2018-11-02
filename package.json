@@ -9,7 +9,7 @@
     "package.json"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,16 @@
     "url": "https://github.com/ishi720/gulp-package-version-notation/issues"
   },
   "homepage": "https://github.com/ishi720/gulp-package-version-notation#readme",
-  "keywords": ["gulp-package-version-notation","gulp","gulpplugin"]
+  "keywords": [
+    "gulp-package-version-notation",
+    "gulp",
+    "gulpplugin"
+  ],
+  "dependencies": {
+    "gulp-util": "3.x.x",
+    "through2": "2.x.x"
+  },
+  "devDependencies": {
+    "jest": "23.x.x"
+  }
 }

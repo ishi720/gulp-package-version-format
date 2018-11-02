@@ -9,31 +9,31 @@ module.exports = function() {
      */
     var transform = function(file, encoding, callback) {
 
-          // ファイルが指定されているかチェックする
-          if (file.isNull()) {
-              return callback(null, file);
-          }
+        // ファイルが指定されているかチェックする
+        if (file.isNull()) {
+            return callback(null, file);
+        }
 
-          // ストリームはサポートしない
-          if (file.isStream()) {
-              this.emit('error', new PluginError('gulp-package-version-notation', 'Streams not supported!'));
-          }
+        // ストリームはサポートしない
+        if (file.isStream()) {
+            this.emit('error', new PluginError('gulp-package-version-notation', 'Streams not supported!'));
+        }
 
-          /* メイン処理 */
-          var dataJson = JSON.parse(file.contents.toString('utf8'));
-          var depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
+        /* メイン処理 */
+        var dataJson = JSON.parse(file.contents.toString('utf8'));
+        var depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
 
-          depNames.forEach( function(depName) {
-              for(var pacName in dataJson[depName]){
-                  dataJson[depName][pacName] = versionFormat(dataJson[depName][pacName]);
-              }
-          });
+        depNames.forEach( function(depName) {
+            for(var pacName in dataJson[depName]){
+                dataJson[depName][pacName] = versionFormat(dataJson[depName][pacName]);
+            }
+        });
 
-          //json整形
-          file.contents = new Buffer( JSON.stringify( dataJson, null, 2 ) + '\n' );
+        //json整形
+        file.contents = new Buffer.from( JSON.stringify( dataJson, null, 2 ) + '\n' );
 
-          this.push(file);
-          callback();
+        this.push(file);
+        callback();
     };
     return through.obj(transform);
 };

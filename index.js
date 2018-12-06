@@ -39,15 +39,21 @@ module.exports = function() {
 };
 
 function versionFormat(version) {
-    if ( version.match(/\^0\.0\.\d+$/) ){
+
+    // Skip if revisions are specified
+    if ( (version.match( /\./g ) || [] ).length >= 3) {
+        return version;
+    }
+
+    if ( version.match(/\^0\.0\..+$/) ){
         //^0.0.5 -> 0.0.5
-        return version.replace(/\^0\.0\.(\d+)$/, '0.0.'+'$1' );
-    } else if ( version.match(/\^0\.\d+\.\d+$/) ) {
+        return version.replace(/\^0\.0\.(.+)$/, '0.0.'+'$1' );
+    } else if ( version.match(/\^0\.\d+\..+$/) ) {
         //^0.5.5 -> 0.5.x
-        return version.replace(/\^0\.(\d+).(\d+)$/, '0.'+'$1'+'.x' );
-    } else if ( version.match(/\^\d+\.\d+\.\d+$/) ) { 
+        return version.replace(/\^0\.(\d+)..+$/, '0.'+'$1'+'.x' );
+    } else if ( version.match(/\^\d+\.\d+\..+$/) ) { 
         //^5.5.5 -> 5.x.x
-        return version.replace(/\^(\d+)\.(\d+).(\d+)$/, '$1'+'.x.x' );
+        return version.replace(/\^(\d+)\.\d+\..+$/, '$1'+'.x.x' );
     } else {
         return version;
     } 

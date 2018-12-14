@@ -1,12 +1,12 @@
 # gulp-package-version-format
 
-[![npm version](https://badge.fury.io/js/gulp-package-version-format.svg)](https://badge.fury.io/js/gulp-package-version-format)
-[![Build Status](https://travis-ci.org/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.org/ishi720/gulp-package-version-format)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c2b423ed00841af847d28e018730b67)](https://www.codacy.com/app/ishi720/gulp-package-version-format?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ishi720/gulp-package-version-format&amp;utm_campaign=Badge_Grade)
-
 ## 概要
 
 package.jsonのバージョン表記を単純化するgulpのプラグインです。
+
+[![npm version](https://badge.fury.io/js/gulp-package-version-format.svg)](https://badge.fury.io/js/gulp-package-version-format)
+[![Build Status](https://travis-ci.org/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.org/ishi720/gulp-package-version-format)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c2b423ed00841af847d28e018730b67)](https://www.codacy.com/app/ishi720/gulp-package-version-format?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ishi720/gulp-package-version-format&amp;utm_campaign=Badge_Grade)
 
 現在は`^`のみ対応しております。
 
@@ -20,11 +20,11 @@ package.jsonのバージョン表記を単純化するgulpのプラグインで�
 
 ## インストール
 
-```
+```bash
 npm i gulp-package-version-format
 ```
 
-```
+```bash
 yarn add gulp-package-version-format
 ```
 

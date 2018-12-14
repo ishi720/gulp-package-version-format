@@ -1,7 +1,9 @@
 'use strict';
 
-var through = require('through2');
-var PluginError = require('gulp-util').PluginError;
+const through = require('through2');
+const PluginError = require('plugin-error');
+
+const PLUGIN_NAME = 'gulp-package-version-format';
 
 module.exports = function() {
     /**
@@ -16,10 +18,10 @@ module.exports = function() {
 
         // ストリームはサポートしない
         if (file.isStream()) {
-            this.emit('error', new PluginError('gulp-package-version-notation', 'Streams not supported!'));
+            return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
         }
 
-        /* メイン処理 */
+        // メイン処理
         var dataJson = JSON.parse(file.contents.toString('utf8'));
         var depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
 

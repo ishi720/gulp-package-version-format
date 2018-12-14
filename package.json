@@ -27,8 +27,8 @@
     "gulpplugin"
   ],
   "dependencies": {
-    "gulp-util": "3.x.x",
-    "through2": "2.x.x"
+    "plugin-error": "1.x.x",
+    "through2": "3.x.x"
   },
   "devDependencies": {
     "jest": "23.x.x"

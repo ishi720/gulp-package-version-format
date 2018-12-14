@@ -4,7 +4,7 @@ const gulpPackageVersionFormat = require('./../index');
 it('^5.5.5 -> 5.x.x', () => {
 	expect(gulpPackageVersionFormat.versionFormat('^5.5.5')).toBe('5.x.x');
 });
-it('^5.5.5.5 -> 5.5.5.5', () => {
+it('^5.5.5.5 -> ^5.5.5.5', () => {
 	expect(gulpPackageVersionFormat.versionFormat('^5.5.5.5')).toBe('^5.5.5.5');
 });
 it('^0.5.5 -> 0.5.x', () => {

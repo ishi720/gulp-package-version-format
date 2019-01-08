@@ -9,7 +9,8 @@
     "package.json"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "through2": "3.x.x"
   },
   "devDependencies": {
+    "eslint": "5.x.x",
     "jest": "23.x.x"
   }
 }

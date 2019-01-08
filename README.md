@@ -37,7 +37,7 @@ gulpfile.jsに以下のような記述をする。
 var versionFormat = require('gulp-package-version-format');
 
 gulp.task('versionFormat', function(){
-    gulp.src('./package.json')
+    return gulp.src('./package.json')
         .pipe(versionFormat())
         .pipe(gulp.dest('./'));
 });
@@ -45,6 +45,6 @@ gulp.task('versionFormat', function(){
 
 gulpコマンドで実行します。
 
-```
+```bash
 gulp versionFormat
 ```

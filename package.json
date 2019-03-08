@@ -9,8 +9,8 @@
     "package.json"
   ],
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest -v & jest",
+    "lint": "eslint -v & eslint ."
   },
   "repository": {
     "type": "git",

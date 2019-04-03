@@ -32,7 +32,7 @@ module.exports = function() {
         });
 
         //json整形
-        file.contents = new Buffer.from( JSON.stringify( dataJson, null, 2 ) + '\n' );
+        file.contents = Buffer.from( JSON.stringify( dataJson, null, 2 ) + '\n' );
 
         this.push(file);
         callback();
@@ -49,13 +49,22 @@ function versionFormat(version) {
 
     if ( version.match(/\^0\.0\..+$/) ){
         //^0.0.5 -> 0.0.5
-        return version.replace(/\^0\.0\.(.+)$/, '0.0.'+'$1' );
-    } else if ( version.match(/\^0\.\d+\..+$/) ) {
+        return version.replace(/^\^0\.0\.(.+)$/, '0.0.'+'$1' );
+    } else if ( version.match(/^\^0\.\d+\..+$/) ) {
         //^0.5.5 -> 0.5.x
-        return version.replace(/\^0\.(\d+)..+$/, '0.'+'$1'+'.x' );
-    } else if ( version.match(/\^\d+\.\d+\..+$/) ) { 
+        return version.replace(/^\^0\.(\d+)..+$/, '0.'+'$1'+'.x' );
+    } else if ( version.match(/^\^\d+\.\d+\..+$/) ) { 
         //^5.5.5 -> 5.x.x
-        return version.replace(/\^(\d+)\.\d+\..+$/, '$1'+'.x.x' );
+        return version.replace(/^\^(\d+)\.\d+\..+$/, '$1'+'.x.x' );
+    } else if ( version.match(/^\^\d+$/) ) { 
+        //^5 -> 5.x.x
+        return version.replace(/^\^(\d+)$/, '$1'+'.x.x' );
+    } else if ( version.match(/^\^0\.\d+$/) ) { 
+        //^0.5 -> 0.5.x
+        return version.replace(/^\^(0\.\d+)$/, '$1'+'.x' );
+    } else if ( version.match(/^\^\d+\.\d+$/) ) { 
+        //^5.5 -> 5.x.x
+        return version.replace(/^\^(\d+)\.\d+$/, '$1'+'.x.x' );
     } else {
         return version;
     } 

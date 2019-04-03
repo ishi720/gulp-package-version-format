@@ -5,6 +5,7 @@
 package.jsonのバージョン表記を単純化するgulpのプラグインです。
 
 [![npm version](https://badge.fury.io/js/gulp-package-version-format.svg)](https://badge.fury.io/js/gulp-package-version-format)
+![npm version](https://img.shields.io/npm/dt/gulp-package-version-format.svg)
 [![Build Status](https://travis-ci.org/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.org/ishi720/gulp-package-version-format)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c2b423ed00841af847d28e018730b67)](https://www.codacy.com/app/ishi720/gulp-package-version-format?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ishi720/gulp-package-version-format&amp;utm_campaign=Badge_Grade)
 

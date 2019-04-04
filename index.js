@@ -9,8 +9,10 @@ module.exports = function(arg) {
 
     // wild card
     let wildcard = 'x';
-    if ( arg.wildcard.match(/^[*|x|X]$/) ) {
-        wildcard = arg.wildcard;
+    if ( typeof arg !== 'undefined'){
+        if ( arg.wildcard.match(/^[*|x|X]$/) ) {
+            wildcard = arg.wildcard;
+        }
     }
 
     /**

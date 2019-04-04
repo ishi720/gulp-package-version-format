@@ -1,17 +1,17 @@
 # gulp-package-version-format
 
-## 概要
 
-package.jsonのバージョン表記を単純化するgulpのプラグインです。
+
+## 概要
 
 [![npm version](https://badge.fury.io/js/gulp-package-version-format.svg)](https://badge.fury.io/js/gulp-package-version-format)
 ![npm version](https://img.shields.io/npm/dt/gulp-package-version-format.svg)
 [![Build Status](https://travis-ci.org/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.org/ishi720/gulp-package-version-format)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c2b423ed00841af847d28e018730b67)](https://www.codacy.com/app/ishi720/gulp-package-version-format?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ishi720/gulp-package-version-format&amp;utm_campaign=Badge_Grade)
 
-現在は`^`のみ対応しております。
+package.jsonのバージョン表記を統一化するgulpのプラグインです。
 
-> ### 例
+> ### sample
 >
 > ^1.2.3 →　1.x.x
 >
@@ -19,7 +19,7 @@ package.jsonのバージョン表記を単純化するgulpのプラグインで�
 >
 > ^0.0.1 →　0.0.1
 
-## インストール
+## Install
 
 ```bash
 npm i gulp-package-version-format
@@ -30,9 +30,9 @@ yarn add gulp-package-version-format
 ```
 
 
-## 使い方
+## API
 
-gulpfile.jsに以下のような記述をする。
+gulpfile.js
 
 ```js
 var versionFormat = require('gulp-package-version-format');
@@ -44,7 +44,19 @@ gulp.task('versionFormat', function(){
 });
 ```
 
-gulpコマンドで実行します。
+## versionFormat() options
+
+```js
+versionFormat({
+ 'wildcard': '*'
+})
+```
+
+|option|default|description|
+|:----:|:----:|:----:|
+|wildcard|x| Specifies the wildcard to use.<br> x or X or \* |
+
+## Run
 
 ```bash
 gulp versionFormat

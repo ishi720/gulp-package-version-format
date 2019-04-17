@@ -48,7 +48,7 @@ gulp.task('versionFormat', function(){
 
 ```js
 versionFormat({
- 'wildcard': '*'
+    'wildcard': '*'
 })
 ```
 

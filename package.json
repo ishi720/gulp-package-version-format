@@ -9,8 +9,9 @@
     "package.json"
   ],
   "scripts": {
-    "test": "jest -v & jest",
-    "lint": "eslint -v & eslint ."
+    "test": "jest -v & jest --no-cache",
+    "lint": "eslint -v & eslint .",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "eslint": "5.x.x",
+    "gulp": "4.x.x",
     "jest": "24.x.x"
   }
 }

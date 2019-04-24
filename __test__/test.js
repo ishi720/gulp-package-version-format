@@ -27,6 +27,9 @@ describe('Prefix Caret Test', () => {
     it('^555.555.555 -> 555.x.x', () => {
         expect(gulpPackageVersionFormat.versionFormat('^555.555.555')).toBe('555.x.x');
     });
+    it('^5.5.X -> 5.x.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('^5.5.X')).toBe('5.x.x');
+    });
     it('^5 -> 5.x.x', () => {
         expect(gulpPackageVersionFormat.versionFormat('^5')).toBe('5.x.x');
     });
@@ -86,6 +89,10 @@ describe('Prefix Tilde Test', () => {
         expect(gulpPackageVersionFormat.versionFormat('~555.555.555')).toBe('~555.555.555');
         //expect(gulpPackageVersionFormat.versionFormat('~555.555.555')).toBe('555.555.x');
     });
+    it('~5.5.X -> ~5.5.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('~5.5.X')).toBe('~5.5.X');
+        //expect(gulpPackageVersionFormat.versionFormat('~5.5.X')).toBe('5.5.x');
+    });
     it('~5 -> ~5', () => {
         expect(gulpPackageVersionFormat.versionFormat('~5')).toBe('~5');
         //expect(gulpPackageVersionFormat.versionFormat('~5')).toBe('5.x.x');
@@ -144,6 +151,9 @@ describe('Prefix None Test', () => {
     });
     it('555.555.555 -> 555.555.555', () => {
         expect(gulpPackageVersionFormat.versionFormat('555.555.555')).toBe('555.555.555');
+    });
+    it('5.5.X -> 5.5.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('5.5.X')).toBe('5.5.x');
     });
     it('5 -> 5', () => {
         expect(gulpPackageVersionFormat.versionFormat('5')).toBe('5');

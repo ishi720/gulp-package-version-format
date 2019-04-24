@@ -9,9 +9,9 @@
     "package.json"
   ],
   "scripts": {
-    "test": "jest -v & jest --no-cache",
+    "test": "jest -v & jest --coverage --no-cache",
     "lint": "eslint -v & eslint .",
-    "gulp": "gulp"
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "through2": "3.x.x"
   },
   "devDependencies": {
+    "coveralls": "3.x.x",
     "eslint": "5.x.x",
     "gulp": "4.x.x",
     "jest": "24.x.x"

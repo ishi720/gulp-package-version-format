@@ -93,6 +93,15 @@ function versionFormat( version, wildcard='x') {
         } else if ( version.match(/^\d+\.\d+.[*|x|X]$/) ) {
             //5.5.x -> 5.5.*
             return version.replace(/^(\d+\.\d+)\.[*|x|X]$/, '$1'+'.'+ wildcard );
+        } else if ( version.match(/^\d+$/) ) {
+            //5 -> 5.x.x
+            return version.replace(/^(\d+)$/, '$1'+'.'+ wildcard +'.'+ wildcard );
+        } else if ( version.match(/^0\.\d+$/) ) { 
+            //0.5 -> 0.5.x
+            return version.replace(/^(0\.\d+)$/, '$1'+'.'+ wildcard  );
+        } else if ( version.match(/^\d+\.\d+$/) ) { 
+            //5.5 -> 5.5.x
+            return version.replace(/^(\d+\.\d+)$/, '$1'+'.'+ wildcard );
         } else {
             return version;
         }

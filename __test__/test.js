@@ -155,17 +155,14 @@ describe('Prefix None Test', () => {
     it('5.5.X -> 5.5.x', () => {
         expect(gulpPackageVersionFormat.versionFormat('5.5.X')).toBe('5.5.x');
     });
-    it('5 -> 5', () => {
-        expect(gulpPackageVersionFormat.versionFormat('5')).toBe('5');
-        //expect(gulpPackageVersionFormat.versionFormat('5')).toBe('5.x.x');
+    it('5 -> 5.x.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('5')).toBe('5.x.x');
     });
-    it('5.5 -> 5.5', () => {
-        expect(gulpPackageVersionFormat.versionFormat('5.5')).toBe('5.5');
-        //expect(gulpPackageVersionFormat.versionFormat('5.5')).toBe('5.5.x');
+    it('5.5 -> 5.5.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('5.5')).toBe('5.5.x');
     });
-    it('0.5 -> 0.5', () => {
-        expect(gulpPackageVersionFormat.versionFormat('0.5')).toBe('0.5');
-        //expect(gulpPackageVersionFormat.versionFormat('0.5')).toBe('0.5.x');
+    it('0.5 -> 0.5.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('0.5')).toBe('0.5.x');
     });
     it('005.5.5 -> 005.5.5', () => {
         expect(gulpPackageVersionFormat.versionFormat('005.5.5')).toBe('005.5.5');

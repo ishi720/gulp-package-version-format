@@ -1,7 +1,10 @@
+#
+# The scope of support conforms to the nodejs official.
+# https://github.com/nodejs/Release/blob/master/README.md
+#
 language: node_js
 node_js:
   - "12"
-  - "11"
   - "10"
   - "8"
 after_script:

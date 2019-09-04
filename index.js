@@ -84,8 +84,19 @@ function versionFormat( version, wildcard='x') {
         } else {
             return version;
         } 
-    } else if (  version.match(/^~/) ) {
-        return version;
+    } else if ( version.match(/^~/) ) {
+        if ( version.match(/~\d+$/) ) {
+            //~5 -> 5.x.x
+            return version.replace(/~(\d+)$/, '$1'+'.'+ wildcard +'.'+ wildcard );
+        } else if ( version.match(/~0\.\d+$/) ) { 
+            //0.5 -> 0.5.x
+            return version.replace(/~(0\.\d+)$/, '$1'+'.'+ wildcard  );
+        } else if ( version.match(/~\d+\.\d+$/) ) { 
+            //5.5 -> 5.5.x
+            return version.replace(/~(\d+\.\d+)$/, '$1'+'.'+ wildcard );
+        } else {
+            return version;
+        }
     } else {
         if ( version.match(/^\d+\.[*|x|X]\.[*|x|X]$/) ){
             //5.x.x -> 5.*.*

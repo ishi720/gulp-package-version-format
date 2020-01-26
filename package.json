@@ -36,6 +36,7 @@
     "coveralls": "3.x.x",
     "eslint": "6.x.x",
     "gulp": "4.x.x",
-    "jest": "24.x.x"
+    "jest": "25.x.x",
+    "yarn": "1.x.x"
   }
 }

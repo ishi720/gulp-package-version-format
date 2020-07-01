@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "plugin-error": "1.x.x",
-    "through2": "3.x.x"
+    "through2": "4.x.x"
   },
   "devDependencies": {
     "coveralls": "3.x.x",

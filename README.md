@@ -21,7 +21,7 @@ package.jsonのバージョン表記を統一化するgulpのプラグインで�
 [![Build Status](https://travis-ci.org/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.org/ishi720/gulp-package-version-format)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c2b423ed00841af847d28e018730b67)](https://www.codacy.com/app/ishi720/gulp-package-version-format?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ishi720/gulp-package-version-format&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/ishi720/gulp-package-version-format/badge.svg)](https://coveralls.io/github/ishi720/gulp-package-version-format)
-[![devDependencies Status](https://david-dm.org/ishi720/gulp-package-version-format/dev-status.svg)](https://david-dm.org/ishi720/gulp-package-version-format?type=dev)
+
 
 ## Install
 

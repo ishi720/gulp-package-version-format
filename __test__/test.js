@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const gulpPackageVersionFormat = require('./../index');
 const fs = require('fs');
+const path = require('path');
 
 describe('Prefix Caret Test', () => {
     it('^5.5.5 -> 5.x.x', () => {
@@ -178,69 +179,50 @@ describe('Prefix None Test', () => {
     });
 })
 
+const runGulp = (option, dest) => new Promise((resolve, reject) => {
+    gulp.src(path.join(__dirname, '../package.json'))
+        .pipe(gulpPackageVersionFormat(option))
+        .on('error', reject)
+        .pipe(gulp.dest(dest))
+        .on('error', reject)
+        .on('finish', () => {
+            resolve(JSON.parse(fs.readFileSync(path.join(dest, 'package.json'), 'utf8')));
+        });
+});
+
 describe('Gulp Exec Test', () => {
-    it('"wildcard":"x" -> 1.x.x', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat({
-                'wildcard': 'x'
-            }))
-            .pipe(gulp.dest('./__test__/t1/'));
-        setTimeout(() => {
-            const jsonObject1 = JSON.parse(fs.readFileSync('./__test__/t1/package.json', 'utf8'));
-            expect(jsonObject1.dependencies['plugin-error']).toBe('1.x.x');
-        }, 5000);
+    it('"wildcard":"x" -> 1.x.x', async () => {
+        const jsonObject1 = await runGulp({
+            'wildcard': 'x'
+        }, path.join(__dirname, 't1'));
+        expect(jsonObject1.dependencies['plugin-error']).toBe('1.x.x');
     });
-    it('"wildcard":"X" -> 1.X.X', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat({
-                'wildcard': 'X'
-            }))
-            .pipe(gulp.dest('./__test__/t2/'));
-		setTimeout(() => {
-            const jsonObject2 = JSON.parse(fs.readFileSync('./__test__/t2/package.json', 'utf8'));
-            expect(jsonObject2.dependencies['plugin-error']).toBe('1.X.X');
-        }, 5000);
+    it('"wildcard":"X" -> 1.X.X', async () => {
+        const jsonObject2 = await runGulp({
+            'wildcard': 'X'
+        }, path.join(__dirname, 't2'));
+        expect(jsonObject2.dependencies['plugin-error']).toBe('1.X.X');
     });
-    it('"wildcard":"*" -> 1.*.*', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat({
-                'wildcard': '*'
-            }))
-            .pipe(gulp.dest('./__test__/t3/'));
-        setTimeout(() => {
-            const jsonObject3 = JSON.parse(fs.readFileSync('./__test__/t3/package.json', 'utf8'));
-            expect(jsonObject3.dependencies['plugin-error']).toBe('1.*.*');
-        }, 5000);
+    it('"wildcard":"*" -> 1.*.*', async () => {
+        const jsonObject3 = await runGulp({
+            'wildcard': '*'
+        }, path.join(__dirname, 't3'));
+        expect(jsonObject3.dependencies['plugin-error']).toBe('1.*.*');
     });
-    it('"wildcard":"" -> 1.x.x', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat({
-                'wildcard': ''
-            }))
-            .pipe(gulp.dest('./__test__/t4/'));
-        setTimeout(() => {
-            const jsonObject4 = JSON.parse(fs.readFileSync('./__test__/t4/package.json', 'utf8'));
-            expect(jsonObject4.dependencies['plugin-error']).toBe('1.x.x');
-        }, 5000);
+    it('"wildcard":"" -> 1.x.x', async () => {
+        const jsonObject4 = await runGulp({
+            'wildcard': ''
+        }, path.join(__dirname, 't4'));
+        expect(jsonObject4.dependencies['plugin-error']).toBe('1.x.x');
     });
-    it('"wildcard":"hello" -> 1.x.x', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat({
-                'wildcard': 'hello'
-            }))
-            .pipe(gulp.dest('./__test__/t5/'));
-        setTimeout(() => {
-            const jsonObject5 = JSON.parse(fs.readFileSync('./__test__/t5/package.json', 'utf8'));
-            expect(jsonObject5.dependencies['plugin-error']).toBe('1.x.x');
-        }, 5000);
+    it('"wildcard":"hello" -> 1.x.x', async () => {
+        const jsonObject5 = await runGulp({
+            'wildcard': 'hello'
+        }, path.join(__dirname, 't5'));
+        expect(jsonObject5.dependencies['plugin-error']).toBe('1.x.x');
     });
-    it('wildcard none', () => {
-        gulp.src('./package.json')
-            .pipe(gulpPackageVersionFormat())
-            .pipe(gulp.dest('./__test__/t6/'));
-        setTimeout(() => {
-            const jsonObject4 = JSON.parse(fs.readFileSync('./__test__/t6/package.json', 'utf8'));
-            expect(jsonObject4.dependencies['plugin-error']).toBe('1.x.x');
-        }, 5000);
+    it('wildcard none', async () => {
+        const jsonObject6 = await runGulp(undefined, path.join(__dirname, 't6'));
+        expect(jsonObject6.dependencies['plugin-error']).toBe('1.x.x');
     });
 })

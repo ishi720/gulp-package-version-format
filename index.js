@@ -8,12 +8,7 @@ const PLUGIN_NAME = 'gulp-package-version-format';
 module.exports = function(arg) {
 
     // wild card
-    let wildcard = 'x';
-    if ( typeof arg !== 'undefined'){
-        if ( arg.wildcard.match(/^[*xX]$/) ) {
-            wildcard = arg.wildcard;
-        }
-    }
+    const wildcard = normalizeWildcard(arg && arg.wildcard);
 
     /**
      * @this {Transform}
@@ -56,12 +51,15 @@ module.exports = function(arg) {
 };
 
 
-function versionFormat( version, wildcard='x') {
+// x, X, * 以外は既定値の x にする
+function normalizeWildcard( wildcard ) {
+    return ( typeof wildcard === 'string' && /^[*xX]$/.test(wildcard) ) ? wildcard : 'x';
+}
+
+function versionFormat( version, wildcard ) {
 
     // wild card set
-    if ( !wildcard.match(/^[*xX]$/) ) {
-        wildcard = 'x';
-    }
+    wildcard = normalizeWildcard(wildcard);
 
     // Skip if revisions are specified
     if ( (version.match( /\./g ) || [] ).length >= 3) {

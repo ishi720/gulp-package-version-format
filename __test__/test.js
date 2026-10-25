@@ -235,6 +235,20 @@ describe('Gulp Exec Test', () => {
         }, path.join(__dirname, 't8'));
         expect(jsonObject8.dependencies['plugin-error']).toBe('1.x.x');
     });
+    it('option {} -> 1.x.x', async () => {
+        const jsonObject9 = await runGulp({}, path.join(__dirname, 't9'));
+        expect(jsonObject9.dependencies['plugin-error']).toBe('1.x.x');
+    });
+    it('option null -> 1.x.x', async () => {
+        const jsonObject10 = await runGulp(null, path.join(__dirname, 't10'));
+        expect(jsonObject10.dependencies['plugin-error']).toBe('1.x.x');
+    });
+    it('"wildcard":1 -> 1.x.x', async () => {
+        const jsonObject11 = await runGulp({
+            'wildcard': 1
+        }, path.join(__dirname, 't11'));
+        expect(jsonObject11.dependencies['plugin-error']).toBe('1.x.x');
+    });
     it('wildcard none', async () => {
         const jsonObject6 = await runGulp(undefined, path.join(__dirname, 't6'));
         expect(jsonObject6.dependencies['plugin-error']).toBe('1.x.x');

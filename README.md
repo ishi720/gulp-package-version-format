@@ -18,7 +18,7 @@ package.jsonのバージョン表記を統一化するgulpのプラグインで�
 
 [![npm version](https://badge.fury.io/js/gulp-package-version-format.svg)](https://badge.fury.io/js/gulp-package-version-format)
 ![npm version](https://img.shields.io/npm/dt/gulp-package-version-format.svg)
-[![Build Status](https://travis-ci.com/ishi720/gulp-package-version-format.svg?branch=master)](https://travis-ci.com/ishi720/gulp-package-version-format)
+[![test](https://github.com/ishi720/gulp-package-version-format/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/ishi720/gulp-package-version-format/actions/workflows/test.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e4bf2c183d9d4b31883055eef8444d2e)](https://app.codacy.com/gh/ishi720/gulp-package-version-format/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Coverage Status](https://coveralls.io/repos/github/ishi720/gulp-package-version-format/badge.svg)](https://coveralls.io/github/ishi720/gulp-package-version-format)
 

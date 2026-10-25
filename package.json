@@ -11,8 +11,7 @@
   },
   "scripts": {
     "test": "jest -v & jest --coverage --no-cache",
-    "lint": "eslint -v & eslint .",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "lint": "eslint -v & eslint ."
   },
   "repository": {
     "type": "git",
@@ -35,7 +34,6 @@
   },
   "devDependencies": {
     "@eslint/js": "10.x.x",
-    "coveralls": "3.x.x",
     "eslint": "10.x.x",
     "globals": "17.x.x",
     "gulp": "5.x.x",

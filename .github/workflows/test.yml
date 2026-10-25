@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # https://github.com/nodejs/Release
+        node-version: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn test
+      - name: Coveralls
+        if: matrix.node-version == 22
+        uses: coverallsapp/github-action@v2
+        with:
+          file: coverage/lcov.info

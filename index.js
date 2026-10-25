@@ -18,7 +18,7 @@ module.exports = function(arg) {
     /**
      * @this {Transform}
      */
-    var transform = function(file, encoding, callback) {
+    const transform = function(file, encoding, callback) {
 
         // ファイルが指定されているかチェックする
         if (file.isNull()) {
@@ -41,7 +41,7 @@ module.exports = function(arg) {
         const depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
 
         depNames.forEach( function(depName) {
-            for(var pacName in dataJson[depName]){
+            for(const pacName in dataJson[depName]){
                 dataJson[depName][pacName] = versionFormat(dataJson[depName][pacName], wildcard);
             }
         });
@@ -74,7 +74,7 @@ function versionFormat( version, wildcard='x') {
             return version.replace(/^\^0\.0\.(.+)$/, '0.0.'+'$1' );
         } else if ( version.match(/^\^0\.\d+\..+$/) ) {
             //^0.5.5 -> 0.5.x
-            return version.replace(/^\^0\.(\d+)..+$/, '0.'+'$1'+'.'+ wildcard );
+            return version.replace(/^\^0\.(\d+)\..+$/, '0.'+'$1'+'.'+ wildcard );
         } else if ( version.match(/^\^\d+\.\d+\..+$/) ) { 
             //^5.5.5 -> 5.x.x
             return version.replace(/^\^(\d+)\.\d+\..+$/, '$1'+'.'+ wildcard +'.'+ wildcard );
@@ -107,7 +107,7 @@ function versionFormat( version, wildcard='x') {
         if ( version.match(/^\d+\.[*|x|X]\.[*|x|X]$/) ){
             //5.x.x -> 5.*.*
             return version.replace(/^(\d+)\.[*|x|X]\.[*|x|X]$/, '$1'+'.'+ wildcard +'.'+ wildcard );
-        } else if ( version.match(/^\d+\.\d+.[*|x|X]$/) ) {
+        } else if ( version.match(/^\d+\.\d+\.[*|x|X]$/) ) {
             //5.5.x -> 5.5.*
             return version.replace(/^(\d+\.\d+)\.[*|x|X]$/, '$1'+'.'+ wildcard );
         } else if ( version.match(/^\d+$/) ) {

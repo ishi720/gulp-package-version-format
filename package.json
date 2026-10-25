@@ -1,13 +1,14 @@
 {
   "name": "gulp-package-version-format",
   "version": "1.6.1",
-  "description": "",
+  "description": "package.jsonのバージョン表記を統一化するgulpのプラグインです。",
   "main": "index.js",
   "files": [
-    "index.js",
-    "README.md",
-    "package.json"
+    "index.js"
   ],
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "test": "jest -v & jest --coverage --no-cache",
     "lint": "eslint -v & eslint .",

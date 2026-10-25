@@ -56,6 +56,9 @@ describe('Prefix Caret Test', () => {
     it('^5.5.5,test -> 5.x.x', () => {
         expect(gulpPackageVersionFormat.versionFormat('^5.5.5','test')).toBe('5.x.x');
     });
+    it('^5.5.5,| -> 5.x.x', () => {
+        expect(gulpPackageVersionFormat.versionFormat('^5.5.5','|')).toBe('5.x.x');
+    });
 })
 
 
@@ -178,6 +181,12 @@ describe('Prefix None Test', () => {
     it('5.X.X,test -> 5.x.x', () => {
         expect(gulpPackageVersionFormat.versionFormat('5.X.X','test')).toBe('5.x.x');
     });
+    it('5.|.| -> 5.|.|', () => {
+        expect(gulpPackageVersionFormat.versionFormat('5.|.|')).toBe('5.|.|');
+    });
+    it('5.5.| -> 5.5.|', () => {
+        expect(gulpPackageVersionFormat.versionFormat('5.5.|')).toBe('5.5.|');
+    });
 })
 
 const runGulp = async (option, dest, src = 'fixture/package.json') => {
@@ -219,6 +228,12 @@ describe('Gulp Exec Test', () => {
             'wildcard': 'hello'
         }, path.join(__dirname, 't5'));
         expect(jsonObject5.dependencies['plugin-error']).toBe('1.x.x');
+    });
+    it('"wildcard":"|" -> 1.x.x', async () => {
+        const jsonObject8 = await runGulp({
+            'wildcard': '|'
+        }, path.join(__dirname, 't8'));
+        expect(jsonObject8.dependencies['plugin-error']).toBe('1.x.x');
     });
     it('wildcard none', async () => {
         const jsonObject6 = await runGulp(undefined, path.join(__dirname, 't6'));

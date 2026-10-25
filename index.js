@@ -10,7 +10,7 @@ module.exports = function(arg) {
     // wild card
     let wildcard = 'x';
     if ( typeof arg !== 'undefined'){
-        if ( arg.wildcard.match(/^[*|x|X]$/) ) {
+        if ( arg.wildcard.match(/^[*xX]$/) ) {
             wildcard = arg.wildcard;
         }
     }
@@ -59,7 +59,7 @@ module.exports = function(arg) {
 function versionFormat( version, wildcard='x') {
 
     // wild card set
-    if ( !wildcard.match(/^[*|x|X]$/) ) {
+    if ( !wildcard.match(/^[*xX]$/) ) {
         wildcard = 'x';
     }
 
@@ -104,12 +104,12 @@ function versionFormat( version, wildcard='x') {
             return version;
         }
     } else {
-        if ( version.match(/^\d+\.[*|x|X]\.[*|x|X]$/) ){
+        if ( version.match(/^\d+\.[*xX]\.[*xX]$/) ){
             //5.x.x -> 5.*.*
-            return version.replace(/^(\d+)\.[*|x|X]\.[*|x|X]$/, '$1'+'.'+ wildcard +'.'+ wildcard );
-        } else if ( version.match(/^\d+\.\d+\.[*|x|X]$/) ) {
+            return version.replace(/^(\d+)\.[*xX]\.[*xX]$/, '$1'+'.'+ wildcard +'.'+ wildcard );
+        } else if ( version.match(/^\d+\.\d+\.[*xX]$/) ) {
             //5.5.x -> 5.5.*
-            return version.replace(/^(\d+\.\d+)\.[*|x|X]$/, '$1'+'.'+ wildcard );
+            return version.replace(/^(\d+\.\d+)\.[*xX]$/, '$1'+'.'+ wildcard );
         } else if ( version.match(/^\d+$/) ) {
             //5 -> 5.x.x
             return version.replace(/^(\d+)$/, '$1'+'.'+ wildcard +'.'+ wildcard );

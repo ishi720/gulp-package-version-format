@@ -180,7 +180,7 @@ describe('Prefix None Test', () => {
 })
 
 const runGulp = (option, dest) => new Promise((resolve, reject) => {
-    gulp.src(path.join(__dirname, '../package.json'))
+    gulp.src(path.join(__dirname, 'fixture/package.json'))
         .pipe(gulpPackageVersionFormat(option))
         .on('error', reject)
         .pipe(gulp.dest(dest))

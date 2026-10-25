@@ -3,7 +3,7 @@
 このプロジェクトの主な変更点を記録します。
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に、バージョンは [Semantic Versioning](https://semver.org/lang/ja/) に従います。
 
-## [Unreleased]
+## [1.7.0] - 2026-10-25
 
 ### Added
 
@@ -123,7 +123,7 @@
 
 - 初回リリース
 
-[Unreleased]: https://github.com/ishi720/gulp-package-version-format/compare/1.6.1...HEAD
+[1.7.0]: https://github.com/ishi720/gulp-package-version-format/compare/1.6.1...1.7.0
 [1.6.1]: https://github.com/ishi720/gulp-package-version-format/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/ishi720/gulp-package-version-format/compare/1.5.4...1.6.0
 [1.5.4]: https://github.com/ishi720/gulp-package-version-format/compare/1.5.3...1.5.4

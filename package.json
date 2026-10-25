@@ -1,6 +1,6 @@
 {
   "name": "gulp-package-version-format",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "package.jsonのバージョン表記を統一化するgulpのプラグインです。",
   "main": "index.js",
   "files": [

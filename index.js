@@ -31,7 +31,13 @@ module.exports = function(arg) {
         }
 
         // メイン処理
-        const dataJson = JSON.parse(file.contents.toString('utf8'));
+        let dataJson;
+        try {
+            dataJson = JSON.parse(file.contents.toString('utf8'));
+        } catch (e) {
+            // JSONとして読めない場合はエラーを返す
+            return callback(new PluginError(PLUGIN_NAME, e, { fileName: file.path }));
+        }
         const depNames = ['dependencies','devDependencies','peerDependencies','optionalDependencies','bundledDependencies'];
 
         depNames.forEach( function(depName) {

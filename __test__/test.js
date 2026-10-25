@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const gulpPackageVersionFormat = require('./../index');
 const fs = require('fs');
 const path = require('path');
+const { pipeline } = require('stream/promises');
 
 describe('Prefix Caret Test', () => {
     it('^5.5.5 -> 5.x.x', () => {
@@ -179,16 +180,14 @@ describe('Prefix None Test', () => {
     });
 })
 
-const runGulp = (option, dest) => new Promise((resolve, reject) => {
-    gulp.src(path.join(__dirname, 'fixture/package.json'))
-        .pipe(gulpPackageVersionFormat(option))
-        .on('error', reject)
-        .pipe(gulp.dest(dest))
-        .on('error', reject)
-        .on('finish', () => {
-            resolve(JSON.parse(fs.readFileSync(path.join(dest, 'package.json'), 'utf8')));
-        });
-});
+const runGulp = async (option, dest, src = 'fixture/package.json') => {
+    await pipeline(
+        gulp.src(path.join(__dirname, src)),
+        gulpPackageVersionFormat(option),
+        gulp.dest(dest)
+    );
+    return JSON.parse(fs.readFileSync(path.join(dest, 'package.json'), 'utf8'));
+};
 
 describe('Gulp Exec Test', () => {
     it('"wildcard":"x" -> 1.x.x', async () => {
@@ -224,5 +223,12 @@ describe('Gulp Exec Test', () => {
     it('wildcard none', async () => {
         const jsonObject6 = await runGulp(undefined, path.join(__dirname, 't6'));
         expect(jsonObject6.dependencies['plugin-error']).toBe('1.x.x');
+    });
+    it('invalid json -> PluginError', async () => {
+        await expect(runGulp(undefined, path.join(__dirname, 't7'), 'fixture/invalid.json'))
+            .rejects.toMatchObject({
+                plugin: 'gulp-package-version-format',
+                fileName: path.join(__dirname, 'fixture/invalid.json'),
+            });
     });
 })
